@@ -47,6 +47,7 @@ saccade_point = 9;
 acq_fix_time = 5000; %%acquire the fixation point time
 hold_fix_time = 500;%% initial holding of the fixation point time. eventually should be 500
 saccade_time = 1000; %%time out before leaving the fixation point time
+after_target_show_cue1 = 500; %msec
 shape_presentation_time = 300; %% eventually 500
 shape2_present_time = 200;
 delay_time = 0;
@@ -228,6 +229,21 @@ set_object_path(target_correct, tar_correct_xpath, tar_correct_ypath);
 set_object_path(target_wrong, tar_wrong_xpath, tar_wrong_ypath);
 toggleobject([target_correct target_wrong],'eventmarker',EVE_DEF.E_TAR_CORRECT_ON,'eventmarker',EVE_DEF.E_TAR_WRONG_ON,'Status','on');
 
+[ontarget cur_rt] = eyejoytrack('holdfix',fixation_point, fix_radius, after_target_show_cue1);
+if ~ontarget
+    toggleobject(first_image,'eventmarker',EVE_DEF.E_IMAGE1_OFF,'eventmarker',EVE_DEF.E_BREAK_FIX,'Status','off');
+    toggleobject(fixation_point,'eventmarker',EVE_DEF.E_FIX_OFF,'Status','off');
+    toggleobject(target_correct,'eventmarker',EVE_DEF.E_TAR_CORRECT_OFF,'Status','off');
+    toggleobject(target_wrong,'eventmarker',EVE_DEF.E_TAR_WRONG_OFF,'Status','off');
+    trialerror(3); %break fixation
+    toggleobject(wrong_sound,'Status','on');
+       
+%      TrialRecord.cur_continue_correctNum = 0;
+idle(break_fixation_penalty);
+     TrialRecord.correctRun = 1;
+%      TrialRecord.isBreak = 1;
+    return
+end
 
 
 set_object_path(first_image,shape_xpath_real_group(1),shape_ypath_real_group(1));
