@@ -66,7 +66,7 @@ wrong_choice = 8;
 
 %% reward;
 first_reward = 50;
-reward_stairs = 250;%% reward size for each drop
+reward_stairs = 220;%% reward size for each drop
 if TrialRecord.correctRun >4
     reward_num = 4;
 else
