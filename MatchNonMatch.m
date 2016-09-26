@@ -266,7 +266,7 @@ idle(break_fixation_penalty);
     return
 end
 
-toggleobject(first_image,'eventmarker',EVE_DEF.E_IMAGE1_OFF,'Status','off');
+% toggleobject(first_image,'eventmarker',EVE_DEF.E_IMAGE1_OFF,'Status','off');
 
 %% if the monkey hold fixation for another 500ms delay, then show the second image 
 %user_text(sprintf('current condition: %d',getCurCondNumber));
@@ -306,6 +306,7 @@ end
 
 
 if ~ontarget
+    toggleobject(first_image,'eventmarker',EVE_DEF.E_IMAGE1_OFF,'Status','off');
     toggleobject(second_image,'eventmarker',EVE_DEF.E_IMAGE2_OFF,'eventmarker',EVE_DEF.E_BREAK_FIX,'Status','off');
     
 %     toggleobject(first_image,'eventmarker',EVE_DEF.E_IMAGE1_OFF,'eventmarker',EVE_DEF.E_BREAK_FIX,'Status','off');
@@ -330,7 +331,9 @@ end
 % set_object_path(target_correct, tar_correct_xpath, tar_correct_ypath);
 % set_object_path(target_wrong, tar_wrong_xpath, tar_wrong_ypath);
 % toggleobject([target_correct target_wrong],'eventmarker',EVE_DEF.E_TAR_CORRECT_ON,'eventmarker',EVE_DEF.E_TAR_WRONG_ON,'Status','on');
+toggleobject(first_image,'eventmarker',EVE_DEF.E_IMAGE1_OFF,'Status','off');
 toggleobject(second_image,'eventmarker',EVE_DEF.E_IMAGE2_OFF,'Status','off');
+
 % toggleobject(first_image,'eventmarker',EVE_DEF.E_IMAGE1_OFF,'Status','off');
 
 %% the monkey should hold the fixation point for 500ms
@@ -397,8 +400,9 @@ if ontarget                             % if yes
 
     if ontarget    % if yes again
 
-
+    toggleobject(first_image,'eventmarker',EVE_DEF.E_IMAGE1_OFF,'Status','off');
     toggleobject(second_image,'eventmarker',EVE_DEF.E_IMAGE2_OFF,'Status','off');
+    
 %     toggleobject(first_image,'eventmarker',EVE_DEF.E_IMAGE1_OFF,'Status','off');
     toggleobject(target_correct,'eventmarker',EVE_DEF.E_TAR_CORRECT_OFF,'Status','off');
 %     eventmarker(EVE_DEF.E_TAR_CORRECT_OFF);
@@ -433,6 +437,7 @@ if ontarget                             % if yes
     else                                                    % if not
         trialerror(3);%%%break fixation
         eventmarker(EVE_DEF.E_BREAK_FIX);                    % then break, and shut down all the images
+        toggleobject(first_image,'eventmarker',EVE_DEF.E_IMAGE1_OFF,'Status','off');
         toggleobject(second_image,'eventmarker',EVE_DEF.E_IMAGE2_OFF,'Status','off');
 %         toggleobject(first_image,'eventmarker',EVE_DEF.E_IMAGE1_OFF,'Status','off');
         toggleobject(target_correct,'eventmarker',EVE_DEF.E_TAR_CORRECT_OFF,'Status','off');
@@ -456,7 +461,8 @@ if ontarget                             % if yes
     ontarget = eyejoytrack('holdfix', target_wrong, tar_radius, hold_target_time); % see whether it holds or not    
 
     if ontarget         % if yes, it hold the wrong choice
-    toggleobject(second_image,'eventmarker',EVE_DEF.E_IMAGE2_OFF,'Status','off');       % then close the images, end the trial
+        toggleobject(first_image,'eventmarker',EVE_DEF.E_IMAGE1_OFF,'Status','off');
+        toggleobject(second_image,'eventmarker',EVE_DEF.E_IMAGE2_OFF,'Status','off');       % then close the images, end the trial
 %     toggleobject(first_image,'eventmarker',EVE_DEF.E_IMAGE1_OFF,'Status','off');
     toggleobject(target_correct,'eventmarker',EVE_DEF.E_TAR_CORRECT_OFF,'Status','off');
     toggleobject(target_wrong,'eventmarker',EVE_DEF.E_TAR_WRONG_OFF,'Status','off');
@@ -479,6 +485,7 @@ if ontarget                             % if yes
     else   % if it doesn't hold it
         trialerror(3);%%%break fixation
         eventmarker(EVE_DEF.E_BREAK_FIX);                    % then break, and shut down all the images
+        toggleobject(first_image,'eventmarker',EVE_DEF.E_IMAGE1_OFF,'Status','off');
         toggleobject(second_image,'eventmarker',EVE_DEF.E_IMAGE2_OFF,'Status','off');
 %         toggleobject(first_image,'eventmarker',EVE_DEF.E_IMAGE1_OFF,'Status','off');
         toggleobject(target_correct,'eventmarker',EVE_DEF.E_TAR_CORRECT_OFF,'Status','off');
@@ -496,6 +503,7 @@ if ontarget                             % if yes
     else   % if it neither hold the correct nor the wrong choice, as it has already leave the fixation point, it breaks 
         trialerror(3);%%%break fixation
         eventmarker(EVE_DEF.E_BREAK_FIX);
+        toggleobject(first_image,'eventmarker',EVE_DEF.E_IMAGE1_OFF,'Status','off');
         toggleobject(second_image,'eventmarker',EVE_DEF.E_IMAGE2_OFF,'Status','off');
 %         toggleobject(first_image,'eventmarker',EVE_DEF.E_IMAGE1_OFF,'Status','off');
         toggleobject(target_correct,'eventmarker',EVE_DEF.E_TAR_CORRECT_OFF,'Status','off');
