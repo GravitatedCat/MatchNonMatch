@@ -132,7 +132,8 @@ end
 %     eventmarker(EVE_DEF.SKEWED_LESS_LOC_CUE);
 %     end
 % else 
-    shape_xpath_real_group = [tar_correct_xpath/8*0,tar_correct_xpath/8*0];
+%     shape_xpath_real_group = [tar_correct_xpath/8*0,tar_correct_xpath/8*0];
+    shape_xpath_real_group = [-2,2];
 %     shape_xpath_real_group = [-2, +2];
     shape_ypath_real_group = [0,0];
 %     eventmarker(EVE_DEF.CENTERED_LOC_CUE);
